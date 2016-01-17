@@ -10,8 +10,11 @@ Historique des modifications
 2013-05-03 Version initiale
 *******************************************************/  
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.swing.JComponent;
 
 /**
@@ -38,9 +41,19 @@ public class FenetreFormes extends JComponent{
 	 */
 	@Override 
 	public void paintComponent(Graphics g){
-		
+		super.paintComponent(g);
+		final Forme tabForme[] = new Forme[5];
+
+		tabForme[0] = new Quadrilatere(10, Color.blue, 100, 100, 200, 300);
+		tabForme[1] = new Cercle(10, Color.red,50,50,40);
+		tabForme[2] = new Ovale(10,Color.yellow,300,300,100,200);
 		// Testing...
-		g.drawOval(45, 45, 355, 355);
+		for(int i = 0;i<3;i++)
+		{
+			tabForme[i].dessiner(g);
+		}
+		repaint();
+	
 	}
 	
 	/*

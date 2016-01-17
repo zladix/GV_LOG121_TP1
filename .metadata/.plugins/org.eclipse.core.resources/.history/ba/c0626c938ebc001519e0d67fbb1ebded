@@ -1,0 +1,6 @@
+
+public class Forme {
+	protected int noSequence;
+	protected Color Couleur;
+;
+}

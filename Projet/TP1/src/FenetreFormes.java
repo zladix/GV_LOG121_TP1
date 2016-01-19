@@ -42,7 +42,7 @@ public class FenetreFormes extends JComponent{
 	@Override 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		final Forme tabForme[] = new Forme[5];
+		Forme tabForme[] = new Forme[5];
 
 		tabForme[0] = new Quadrilatere(10, Color.blue, 100, 100, 200, 300);
 		tabForme[1] = new Cercle(10, Color.red,50,50,40);

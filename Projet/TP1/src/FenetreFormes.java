@@ -47,6 +47,7 @@ public class FenetreFormes extends JComponent{
 		tabForme[0] = new Quadrilatere(10, Color.blue, 100, 100, 200, 300);
 		tabForme[1] = new Cercle(10, Color.red,50,50,40);
 		tabForme[2] = new Ovale(10,Color.yellow,300,300,100,200);
+		
 		// Testing...
 		for(int i = 0;i<3;i++)
 		{

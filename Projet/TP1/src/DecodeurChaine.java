@@ -28,6 +28,11 @@ public class DecodeurChaine{
 		return typeForme;
 	}
 	
+	public int[] getTableauCoordonnee()
+	{
+		return tabCoord;
+	}
+	
 	//Décode la chaine recu dans le format NumSéquence<FORME>Coordonnée</FORME>
 	public void DecoderChaine(String sChaine)
 	{

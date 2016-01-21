@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import java.net.*;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
@@ -77,8 +76,9 @@ public class CommBase {
 					socket = new Socket(InetAddress.getLocalHost(),10000);
 					in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 					out = new PrintWriter(socket.getOutputStream());
-					isActif = true;
+					isActif = socket.isConnected();
 				}catch (Exception e) {
+					isActif = false;
 					System.out.println(e);
 				}
 				while(isActif){

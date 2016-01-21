@@ -11,7 +11,14 @@ Historique des modifications
 *******************************************************/  
 
 import java.beans.PropertyChangeListener;
+
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
+import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 /**
  * Base d'une communication via un fil d'exÃ©cution parallÃ¨le.
@@ -22,7 +29,10 @@ public class CommBase {
 	private SwingWorker threadComm =null;
 	private PropertyChangeListener listener = null;
 	private boolean isActif = false;
-	
+	private Socket socket = null;
+	private BufferedReader in = null;
+	private PrintWriter out = null;
+	private String contenuChaine = null;
 	/**
 	 * Constructeur
 	 */
@@ -48,6 +58,7 @@ public class CommBase {
 	 * ArrÃªte la communication
 	 */
 	public void stop(){
+		fermerConnexionServeur();
 		if(threadComm!=null)
 			threadComm.cancel(true); 
 		isActif = false;
@@ -62,16 +73,23 @@ public class CommBase {
 			@Override
 			protected Object doInBackground() throws Exception {
 				System.out.println("Le fils d'execution parallele est lance");
-				while(true){
+				try {
+					socket = new Socket(InetAddress.getLocalHost(),10000);
+					in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					out = new PrintWriter(socket.getOutputStream());
+					isActif = true;
+				}catch (Exception e) {
+					System.out.println(e);
+				}
+				while(isActif){
 					Thread.sleep(DELAI);
-					
-					// C'EST DANS CETTE BOUCLE QU'ON COMMUNIQUE AVEC LE SERVEUR
+					communicationServeur();
 					
  					//La mÃ©thode suivante alerte l'observateur 
 					if(listener!=null)
 					   firePropertyChange("ENVOIE-TEST", null, (Object) "."); 
 				}
-				//return null;
+				return null;
 			}
 		};
 		if(listener!=null)
@@ -85,5 +103,49 @@ public class CommBase {
 	 */
 	public boolean isActif(){
 		return isActif;
+	}
+	
+	/**
+	 * Envoi "GET" au serveur et récupère la réponse
+	 */
+	protected void communicationServeur()
+	{
+		//On peu communiquer avec le serveur
+			try{
+				if(socket.isConnected() == true && socket.isClosed() == false)
+				{
+					out.println("GET");
+					out.flush();
+					contenuChaine = in.readLine();
+					if(contenuChaine.equals("commande> ") == false)
+					{
+						System.out.println(contenuChaine);
+						//Envoi de la chaine contenant la forme
+					}
+				}
+			}catch(Exception e)
+			{
+				JOptionPane.showMessageDialog(null,"La connexion au serveur n'a pas pu être effectuée. Assurez-vous que le serveur est bien ouvert.", "Erreur Connexion",
+					    JOptionPane.ERROR_MESSAGE);
+				stop();
+			}
+	}
+	
+	/**
+	 * Ferme la connexion avec le serveur en lui envoyant la commande "END".
+	 */
+	protected void fermerConnexionServeur()
+	{
+		try{
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			out = new PrintWriter(socket.getOutputStream());
+			out.println("END");
+			out.flush();
+			socket.close();
+			System.out.println("\nCommunication fermée");
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
 	}
 }

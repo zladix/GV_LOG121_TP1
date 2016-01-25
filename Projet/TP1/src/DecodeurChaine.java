@@ -3,9 +3,9 @@ import java.util.regex.*;
 
 
 public class DecodeurChaine{
-	private final String REGEX_FORME ="([^<]*?)<([^>]*?)>";
-	private final String REGEX_COORD_TROIS ="[^<]*?[^-]*?-([^-]*?)-([^-]*?)-([^-]*?)-([^<]*?)<";
-	private final String REGEX_COORD_QUATRE = "[^<]*?[^-]*?-([^-]*?)-([^-]*?)-([^<]*?)<";
+	private final String REGEX_FORME ="([^-]*?)-[^<]*?<([^>]*?)>";
+	private final String REGEX_COORD_QUATRE ="[^<]*?<[^-]*?-([^-]*?)-([^-]*?)-([^-]*?)-([^-]*?)-";
+	private final String REGEX_COORD_TROIS = "[^<]*?<[^-]*?-([^-]*?)-([^-]*?)-([^-]*?)-";
 	private final int TAILLE_TAB_MAX = 4;
 	
 	private int numeroSequence;
@@ -37,42 +37,52 @@ public class DecodeurChaine{
 	//Décode la chaine recu dans le format NumSéquence<FORME>Coordonnée</FORME>
 	public void DecoderChaine(String sChaine)
 	{
-
+		sChaine = sChaine.replaceAll(" ","-");
 		Pattern pRegex = Pattern.compile(REGEX_FORME);
 		Matcher correspondance = pRegex.matcher(sChaine);
-		
 	    if (pRegex.matcher(sChaine).find())
 	    {
 	    	correspondance.find();
+	    	System.out.println("je suis dans le décodeur Regex #1");
 	    	System.out.println(correspondance.group(1));
 	    	numeroSequence = Integer.parseInt(correspondance.group(1));
-	    	typeForme = pRegex.matcher(sChaine).group(1).toUpperCase();
-	    	sChaine.replace(" ","-");
+	    	typeForme = correspondance.group(2).toUpperCase();
 	    	switch(typeForme)
 	    	{
-	    		case "OVALE":
+	    		case "CERCLE":
 	    			pRegex = Pattern.compile(REGEX_COORD_TROIS);
 	    			correspondance = pRegex.matcher(sChaine);
 	    			if(correspondance.find())
 	    			{
-	    				tabCoord[0] = Integer.parseInt(correspondance.group(0));
-	    				tabCoord[1] = Integer.parseInt(correspondance.group(1));
-	    				tabCoord[2] = Integer.parseInt(correspondance.group(2));
+	    				tabCoord[0] = Integer.parseInt(correspondance.group(1));
+	    				System.out.println(correspondance.group(1));
+	    				tabCoord[1] = Integer.parseInt(correspondance.group(2));
+	    				System.out.println(correspondance.group(2));
+	    				tabCoord[2] = Integer.parseInt(correspondance.group(3));
+	    				System.out.println(correspondance.group(3));
 	    			}
 	    		break;
-	    		default:
+	    		case "RECTANGLE":
+	    		case "LIGNE":
+	    		case "CARRE":
+	    		case "OVALE":
 	    			pRegex = Pattern.compile(REGEX_COORD_QUATRE);
 	    			correspondance = pRegex.matcher(sChaine);
 	    			if(correspondance.find())
 	    			{
-	    				tabCoord[0] = Integer.parseInt(correspondance.group(0));
-	    				tabCoord[1] = Integer.parseInt(correspondance.group(1));
-	    				tabCoord[2] = Integer.parseInt(correspondance.group(2));
-	    				tabCoord[3] = Integer.parseInt(correspondance.group(3));
+	    				tabCoord[0] = Integer.parseInt(correspondance.group(1));
+	    				System.out.println(correspondance.group(1));
+	    				tabCoord[1] = Integer.parseInt(correspondance.group(2));
+	    				System.out.println(correspondance.group(2));
+	    				tabCoord[2] = Integer.parseInt(correspondance.group(3));
+	    				System.out.println(correspondance.group(3));
+	    				tabCoord[3] = Integer.parseInt(correspondance.group(4));
+	    				System.out.println(correspondance.group(4));
 	    			}
 	    		break;
+	    		default:
+	    		break;
 	    	}
-	    	System.out.println("find du break");
 	    }
 		
 	}

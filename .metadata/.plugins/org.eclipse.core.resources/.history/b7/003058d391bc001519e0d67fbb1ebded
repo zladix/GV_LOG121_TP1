@@ -1,9 +1,0 @@
-import java.awt.Color;
-
-public class Cercle extends Forme{
-
-	Cercle(int seq,Color couleur)
-	{
-		super(seq,couleur);
-	}
-}

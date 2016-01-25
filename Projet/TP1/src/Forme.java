@@ -10,6 +10,11 @@ abstract class Forme {
 		this.couleur = couleur;
 		this.noSequence = seq;
 	}
+	public int getSeq()
+	{
+		
+		return noSequence;
+	}
 	
 	void dessiner(Graphics g){}
 	

@@ -1,12 +1,12 @@
 import java.awt.Color;
 import java.util.Arrays;
 
-public class OrganiseForme {
+public final class OrganiseForme {
 		
 		final int MAX_FORME = 9;
 		Forme tabForme[];
 		int pos;
-		
+	
 		OrganiseForme()
 		{
 			pos = 0;
@@ -23,5 +23,9 @@ public class OrganiseForme {
 
 			tabForme[pos] = uneForme;
 			pos = pos+1;
+		}
+		public Forme[] getTabForme()
+		{
+			return this.tabForme;
 		}
 }

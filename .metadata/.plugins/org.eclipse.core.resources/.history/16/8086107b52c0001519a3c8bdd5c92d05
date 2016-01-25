@@ -1,0 +1,28 @@
+import java.util.Arrays;
+
+public class OrganiseForme {
+		
+		final int MAX_FORME = 9;
+		Forme tabForme[] = new Forme[MAX_FORME];
+		int pos;
+		
+		
+		OrganiseForme()
+		{
+			pos = 0;
+
+		}
+		
+		
+		public void AjoutForme(Forme uneForme)
+		{
+			if(pos == MAX_FORME)
+			{
+				Forme[] tabForme = Arrays.copyOfRange(tabForme, 1, tabForme.length);
+			}
+			
+			
+			tabForme[pos] = uneForme;
+			pos = pos+1;
+		}
+}

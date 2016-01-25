@@ -7,10 +7,10 @@ public class CreateurForme {
 	public Forme creerForme(String chaineForme)
 	{
 		DecodeurChaine Decodeur = new DecodeurChaine();
+		Decodeur.DecoderChaine(chaineForme);
 		int[] tabCoordonnee = Decodeur.getTableauCoordonnee();
 		Forme uneForme = null;
 		
-		Decodeur.DecoderChaine(chaineForme);
 		
 		switch(Decodeur.getTypeForme())
 		{

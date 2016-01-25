@@ -28,7 +28,8 @@ public class FenetreFormes extends JComponent{
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
 	public static final Dimension dimension = new Dimension(500,500);
-		
+	public OrganiseForme org = new OrganiseForme();
+	
 	/**
 	 * Constructeur
 	 */
@@ -42,21 +43,24 @@ public class FenetreFormes extends JComponent{
 	@Override 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		Forme tabForme[] = new Forme[5];
-
-		tabForme[0] = new Quadrilatere(10, Color.blue, 100, 100, 200, 300);
-		tabForme[1] = new Cercle(10, Color.red,50,50,40);
-		tabForme[2] = new Ovale(10,Color.yellow,300,300,100,200);
 		
+		System.out.println("je peinture");
 		// Testing...
-		for(int i = 0;i<3;i++)
-		{
-			tabForme[i].dessiner(g);
-		}
-		repaint();
-	
+		//for(int i = 0;i<monTabForme.length;i++)
+		//{
+		//	monTabForme[i].dessiner(g);
+	//	}
+		
 	}
 	
+	public void initialiserTabForme(String sForme){
+		
+		CreateurForme crea = new CreateurForme();
+		Forme maForme = crea.creerForme(sForme);
+		Forme[] tabForme = org.getTabForme();
+		//repaint();
+		
+	}
 	/*
 	 * Le Layout qui utilise (contient) FenetreFormes doit réserver 
 	 * l'espace nécessaire à son affichage

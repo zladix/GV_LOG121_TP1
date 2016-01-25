@@ -1,5 +1,6 @@
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import java.util.regex.*;
+
 
 public class DecodeurChaine{
 	private final String REGEX_FORME ="([^<]*?)<([^>]*?)>";
@@ -36,12 +37,16 @@ public class DecodeurChaine{
 	//Décode la chaine recu dans le format NumSéquence<FORME>Coordonnée</FORME>
 	public void DecoderChaine(String sChaine)
 	{
+
 		Pattern pRegex = Pattern.compile(REGEX_FORME);
 		Matcher correspondance = pRegex.matcher(sChaine);
-	    if (correspondance.find( ))
+		
+	    if (pRegex.matcher(sChaine).find())
 	    {
-	    	numeroSequence = Integer.parseInt(correspondance.group(0));
-	    	typeForme = correspondance.group(1).toUpperCase();
+	    	correspondance.find();
+	    	System.out.println(correspondance.group(1));
+	    	numeroSequence = Integer.parseInt(correspondance.group(1));
+	    	typeForme = pRegex.matcher(sChaine).group(1).toUpperCase();
 	    	sChaine.replace(" ","-");
 	    	switch(typeForme)
 	    	{
@@ -67,6 +72,8 @@ public class DecodeurChaine{
 	    			}
 	    		break;
 	    	}
+	    	System.out.println("find du break");
 	    }
+		
 	}
 }

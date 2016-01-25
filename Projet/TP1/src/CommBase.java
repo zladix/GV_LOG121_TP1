@@ -83,12 +83,17 @@ public class CommBase {
 				}
 				while(isActif){
 					Thread.sleep(DELAI);
-					communicationServeur();
+					String sForme = communicationServeur();
+					if(sForme.equals("commande> ") == false)
+					{
 					
- 					//La mÃ©thode suivante alerte l'observateur 
-					if(listener!=null)
-					   firePropertyChange("ENVOIE-TEST", null, (Object) "."); 
+					
+	 					//La mÃ©thode suivante alerte l'observateur 
+						if(listener!=null)
+						   firePropertyChange("ENVOIE-TEST", null, (String) sForme); 
+					}
 				}
+				
 				return null;
 			}
 		};
@@ -108,8 +113,11 @@ public class CommBase {
 	/**
 	 * Envoi "GET" au serveur et récupère la réponse
 	 */
-	protected void communicationServeur()
+	protected String communicationServeur()
 	{
+		CreateurForme creation = new CreateurForme();
+		OrganiseForme tabForme = new OrganiseForme();
+		
 		//On peu communiquer avec le serveur
 			try{
 				if(socket.isConnected() == true && socket.isClosed() == false)
@@ -119,8 +127,9 @@ public class CommBase {
 					contenuChaine = in.readLine();
 					if(contenuChaine.equals("commande> ") == false)
 					{
-						System.out.println(contenuChaine);
 						//Envoi de la chaine contenant la forme
+						//Forme uneForme = creation.creerForme(contenuChaine);
+
 					}
 				}
 			}catch(Exception e)
@@ -129,6 +138,8 @@ public class CommBase {
 					    JOptionPane.ERROR_MESSAGE);
 				stop();
 			}
+			
+			return contenuChaine;
 	}
 	
 	/**

@@ -24,7 +24,7 @@ public class CreateurForme {
 				uneForme = new Cercle(Decodeur.getNumeroSequence(), Color.red,tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2]);
 			break;
 			case "OVALE":
-				uneForme = new Ovale(Decodeur.getNumeroSequence(), Color.cyan,tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
+				uneForme = new Ovale(Decodeur.getNumeroSequence(), Color.blue,tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
 			break;
 			case "LIGNE":
 				uneForme = new Quadrilatere(Decodeur.getNumeroSequence(), Color.orange, tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);

@@ -12,7 +12,6 @@ abstract class Forme {
 	}
 	public int getSeq()
 	{
-		
 		return noSequence;
 	}
 	

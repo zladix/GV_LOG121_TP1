@@ -29,7 +29,6 @@ public class FenetreFormes extends JComponent{
 	public static final int HEIGHT = 500;
 	public static final Dimension dimension = new Dimension(500,500);
 	public OrganiseForme org = new OrganiseForme();
-	
 	/**
 	 * Constructeur
 	 */
@@ -43,22 +42,24 @@ public class FenetreFormes extends JComponent{
 	@Override 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		Forme[] tabForme = org.getTabForme();
 		
-		System.out.println("je peinture");
-		// Testing...
-		//for(int i = 0;i<monTabForme.length;i++)
-		//{
-		//	monTabForme[i].dessiner(g);
-	//	}
-		
+		if(tabForme[0] != null)
+		{
+			// Testing...
+			for(int i = 0;i<org.getPos();i++)
+			{
+				tabForme[i].dessiner(g);
+			}
+		}
 	}
 	
 	public void initialiserTabForme(String sForme){
 		
 		CreateurForme crea = new CreateurForme();
 		Forme maForme = crea.creerForme(sForme);
-		Forme[] tabForme = org.getTabForme();
-		//repaint();
+		org.AjoutForme(maForme);
+		repaint();
 		
 	}
 	/*

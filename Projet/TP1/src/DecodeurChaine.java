@@ -43,8 +43,6 @@ public class DecodeurChaine{
 	    if (pRegex.matcher(sChaine).find())
 	    {
 	    	correspondance.find();
-	    	System.out.println("je suis dans le décodeur Regex #1");
-	    	System.out.println(correspondance.group(1));
 	    	numeroSequence = Integer.parseInt(correspondance.group(1));
 	    	typeForme = correspondance.group(2).toUpperCase();
 	    	switch(typeForme)
@@ -54,11 +52,8 @@ public class DecodeurChaine{
 	    			correspondance = pRegex.matcher(sChaine);
 	    			if(correspondance.find())
 	    			{
-	    				tabCoord[0] = Integer.parseInt(correspondance.group(1));
 	    				System.out.println(correspondance.group(1));
-	    				tabCoord[1] = Integer.parseInt(correspondance.group(2));
 	    				System.out.println(correspondance.group(2));
-	    				tabCoord[2] = Integer.parseInt(correspondance.group(3));
 	    				System.out.println(correspondance.group(3));
 	    			}
 	    		break;
@@ -71,13 +66,9 @@ public class DecodeurChaine{
 	    			if(correspondance.find())
 	    			{
 	    				tabCoord[0] = Integer.parseInt(correspondance.group(1));
-	    				System.out.println(correspondance.group(1));
 	    				tabCoord[1] = Integer.parseInt(correspondance.group(2));
-	    				System.out.println(correspondance.group(2));
 	    				tabCoord[2] = Integer.parseInt(correspondance.group(3));
-	    				System.out.println(correspondance.group(3));
 	    				tabCoord[3] = Integer.parseInt(correspondance.group(4));
-	    				System.out.println(correspondance.group(4));
 	    			}
 	    		break;
 	    		default:

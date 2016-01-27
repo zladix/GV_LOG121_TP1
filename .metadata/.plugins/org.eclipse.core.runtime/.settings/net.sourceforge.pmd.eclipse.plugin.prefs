@@ -1,0 +1,4 @@
+#Tue Jan 26 16:48:46 EST 2016
+net.sourceforge.pmd.eclipse.plugin.globalRuleManagement=true
+net.sourceforge.pmd.eclipse.plugin.ruletable.fraction=55
+net.sourceforge.pmd.eclipse.plugin.ruletable.hiddenColumns=tExtURL,tXmpCnt,tMaxLang,tSince,fixCnt,tMinLang,modCnt

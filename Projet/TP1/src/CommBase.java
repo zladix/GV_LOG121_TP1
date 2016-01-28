@@ -2,9 +2,10 @@
 Cours:  LOG121
 Projet: Squelette du laboratoire #1
 Nom du fichier: CommBase.java
-Date crÃ©Ã©: 2013-05-03
+Date créé: 2013-05-03
 *******************************************************
 Historique des modifications
+-Ajout de la communication au serveur Serveur forme. (Par Vincent Leclerc et Gabriel Déry le 2016-01-21)
 *******************************************************
 *@author Patrice Boucher
 2013-05-03 Version initiale
@@ -20,7 +21,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 /**
- * Base d'une communication via un fil d'exÃ©cution parallÃ¨le.
+ * Base d'une communication via un fil d'exécution parallèle.
  */
 public class CommBase {
 	
@@ -39,22 +40,22 @@ public class CommBase {
 	}
 	
 	/**
-	 * Définir le récepteur de l'information reçue dans la communication avec le serveur
-	 * @param listener sera alertÃ© lors de l'appel de "firePropertyChanger" par le SwingWorker
+	 * Définir le récepteur de l'information relié dans la communication avec le serveur
+	 * @param listener sera alerté lors de l'appel de "firePropertyChanger" par le SwingWorker
 	 */
 	public void setPropertyChangeListener(PropertyChangeListener listener){
 		this.listener = listener;
 	}
 	
 	/**
-	 * DÃ©marre la communication
+	 * Démarre la communication
 	 */
 	public void start(){
 		creerCommunication();
 	}
 	
 	/**
-	 * ArrÃªte la communication
+	 * Arrête la communication
 	 */
 	public void stop(){
 		fermerConnexionServeur();
@@ -64,16 +65,16 @@ public class CommBase {
 	}
 	
 	/**
-	 * CrÃ©er le nÃ©cessaire pour la communication avec le serveur
+	 * Créer le nécessaire pour la communication avec le serveur
 	 */
 	protected void creerCommunication(){		
-		// CrÃ©e un fil d'exÃ©cusion parallÃ¨le au fil courant,
+		// Crée un fil d'exécusion parallèle au fil courant,
 		threadComm = new SwingWorker(){
 			@Override
 			protected Object doInBackground() throws Exception {
 				System.out.println("Le fils d'execution parallele est lance");
 				try {
-					String infoConnexion = JOptionPane.showInputDialog(null,"Quel est le nom d'hôte et le port du serveur de formes?",null);
+					String infoConnexion = JOptionPane.showInputDialog(null,"Quel est le nom d'hôtes et le port du serveur de formes?",null);
 					if(infoConnexion.contains("localhost") == true)
 					{
 						socket = new Socket(InetAddress.getLocalHost(),Integer.parseInt(infoConnexion.substring(infoConnexion.indexOf(":")+1,infoConnexion.length())));
@@ -86,7 +87,7 @@ public class CommBase {
 					out = new PrintWriter(socket.getOutputStream());
 					isActif = socket.isConnected();
 				}catch (Exception e) {
-					JOptionPane.showMessageDialog(null,"La connexion au serveur n'a pas pu être effectuée. Assurez-vous que le serveur est bien ouvert.", "Erreur Connexion",
+					JOptionPane.showMessageDialog(null,"La connexion au serveur n'a pas pu être effectué Assurez-vous que le serveur est bien ouvert.", "Erreur Connexion",
 						    JOptionPane.ERROR_MESSAGE);
 					isActif = false;
 					System.out.println(e);
@@ -98,7 +99,7 @@ public class CommBase {
 					{
 					
 					
-	 					//La mÃ©thode suivante alerte l'observateur 
+	 					//La méthode suivante alerte l'observateur 
 						if(listener!=null)
 						   firePropertyChange("ENVOIE-TEST", null, (String) sForme); 
 					}
@@ -108,13 +109,13 @@ public class CommBase {
 			}
 		};
 		if(listener!=null)
-		   threadComm.addPropertyChangeListener(listener); // La mÃ©thode "propertyChange" de ApplicationFormes sera donc appelÃ©e lorsque le SwinkWorker invoquera la mÃ©thode "firePropertyChanger" 		
-		threadComm.execute(); // Lance le fil d'exÃ©cution parallÃ¨le.
+		   threadComm.addPropertyChangeListener(listener); // La méthode "propertyChange" de ApplicationFormes sera donc appelée lorsque le SwinkWorker invoquera la méthode "firePropertyChanger" 		
+		threadComm.execute(); // Lance le fil d'exécution parallèle.
 		isActif = true;
 	}
 	
 	/**
-	 * @return si le fil d'exÃ©cution parallÃ¨le est actif
+	 * @return si le fil d'exécution parallèle est actif
 	 */
 	public boolean isActif(){
 		return isActif;
@@ -144,7 +145,7 @@ public class CommBase {
 				}
 			}catch(Exception e)
 			{
-				JOptionPane.showMessageDialog(null,"La connexion au serveur n'a pas pu être effectuée. Assurez-vous que le serveur est bien ouvert.", "Erreur Connexion",
+				JOptionPane.showMessageDialog(null,"La connexion au serveur n'a pas pu être effectué Assurez-vous que le serveur est bien ouvert.", "Erreur Connexion",
 					    JOptionPane.ERROR_MESSAGE);
 				stop();
 			}
@@ -163,7 +164,7 @@ public class CommBase {
 			out.println("END");
 			out.flush();
 			socket.close();
-			System.out.println("\nCommunication fermée");
+			System.out.println("\nCommunication fermé");
 		}catch(Exception e)
 		{
 			System.out.println(e);

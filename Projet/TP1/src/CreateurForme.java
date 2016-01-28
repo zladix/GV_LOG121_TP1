@@ -1,9 +1,29 @@
+/******************************************************
+Cours:  LOG121
+Projet: TP1 #1
+Nom du fichier: CreateurForme.java
+Date créé: 2016-01-14
+*******************************************************
+Historique des modifications
+*******************************************************
+*@author Vincent Leclerc(LECV07069406)
+*@author Gabriel Déry(DERG30049401)
+2016-01-14 Version initiale
+*******************************************************/  
 import java.awt.Color;
 
+/**
+ * Classe qui va s'occuper de créer les formes à partir d'une chaîne de caractères
+ *
+ */
 public class CreateurForme {
 	
-	CreateurForme(){}
+	public CreateurForme(){}
 	
+	/**
+	 * @param chaineForme chaine de caractère reçu par le serveur
+	 * @return La forme qui est créé
+	 */
 	public Forme creerForme(String chaineForme)
 	{
 		DecodeurChaine Decodeur = new DecodeurChaine();

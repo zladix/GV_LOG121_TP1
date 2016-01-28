@@ -18,9 +18,9 @@ import java.awt.Graphics2D;
 import javax.swing.JComponent;
 
 /**
- * Cette fenÃªtre gÃ¨re l'affichage des formes 
+ * Cette fenêtre gère l'affichage des formes 
  * @author Patrice Boucher
- * @date 2013/05/04
+ * 2013/05/04
  */
 public class FenetreFormes extends JComponent{
 	
@@ -54,6 +54,10 @@ public class FenetreFormes extends JComponent{
 		}
 	}
 	
+	/**
+	 * Permet d'ajouter les formes dans un tableau qui sont envoyé par l'observateur
+	 * @param sForme chaîne de caractère reçu par le serveur
+	 */
 	public void initialiserTabForme(String sForme){
 		
 		CreateurForme crea = new CreateurForme();

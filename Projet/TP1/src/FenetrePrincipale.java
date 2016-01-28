@@ -17,16 +17,18 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JFrame;
  
 /**
- * Cette classe reprÃ©sente la fenÃªtre principale de l'application 
+ * Cette classe représente la fenêtre principale de l'application 
  * @author Patrice Boucher
- * @date 2013/05/04
+ * 2013/05/04
  */
 public class FenetrePrincipale extends JFrame implements PropertyChangeListener{
 	
 	private static final long serialVersionUID = -1210804336046370508L;
 	FenetreFormes fenetreFormes = new FenetreFormes();
+
 	/**
 	 * Constructeur
+	 * @param comm communication entre le serveur et l'application
 	 */
 	public FenetrePrincipale(CommBase comm){
 		

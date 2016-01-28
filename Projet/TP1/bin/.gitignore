@@ -8,6 +8,7 @@
 /FenetrePrincipale.class
 /Forme.class
 /LangueConfig.class
+/Ligne.class
 /MenuFenetre$1.class
 /MenuFenetre$2.class
 /MenuFenetre$3.class
@@ -19,4 +20,3 @@
 /app_en.properties
 /app_fr.properties
 /prefs.properties
-/Ligne.class

@@ -44,7 +44,7 @@ public class LangueConfig {
 	   /**
 	    * Retourne un mot (dans la langue de l'application) lié à un champs
 	    * @param key champs
-	    * @return
+	    * @return la ressource
 	    */
 	   public static String getResource(String key) {
 		      return (resources == null) ? null : resources.getString(key);

@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 /**
- * CrÃ©e le menu de la fenÃªtre de l'applicationÃ©
+ * Crée le menu de la fenêtre de l'application
  */
 public class MenuFenetre extends JMenuBar{
 	

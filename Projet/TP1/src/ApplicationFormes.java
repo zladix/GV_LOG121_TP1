@@ -17,13 +17,12 @@ import java.beans.PropertyChangeListener;
 /**
  * Cette classe représente l'application dans son ensemble. 
  * @author Patrice Boucher
- * @date 2013/05/04
  */
 public class ApplicationFormes{
 	
 	/**
 	 * main de l'application
-	 * @param args
+	 * @param args obligatoire dans le main
 	 */
 	public static void main(String[] args) {
 		ApplicationFormes application = new ApplicationFormes();

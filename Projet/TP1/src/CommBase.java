@@ -125,10 +125,7 @@ public class CommBase {
 	 * Envoi "GET" au serveur et récupère la réponse
 	 */
 	protected String communicationServeur()
-	{
-		CreateurForme creation = new CreateurForme();
-		OrganiseForme tabForme = new OrganiseForme();
-		
+	{	
 		//On peu communiquer avec le serveur
 			try{
 				if(socket.isConnected() == true && socket.isClosed() == false)
@@ -136,12 +133,6 @@ public class CommBase {
 					out.println("GET");
 					out.flush();
 					contenuChaine = in.readLine();
-					if(contenuChaine.equals("commande> ") == false)
-					{
-						//Envoi de la chaine contenant la forme
-						//Forme uneForme = creation.creerForme(contenuChaine);
-
-					}
 				}
 			}catch(Exception e)
 			{

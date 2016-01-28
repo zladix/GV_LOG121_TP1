@@ -20,8 +20,8 @@ import java.util.Arrays;
 public final class OrganiseForme {
 		
 		final int MAX_FORME = 10;
-		Forme tabForme[];
-		int pos;
+		private Forme tabForme[];
+		private int pos;
 
 		
 		/**

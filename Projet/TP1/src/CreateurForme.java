@@ -1,10 +1,8 @@
 import java.awt.Color;
-import ca.etsmtl.log.util.IDLogger;
 
 public class CreateurForme {
 	
 	CreateurForme(){}
-	IDLogger logger = IDLogger.getInstance(); //Méthode statique
 	
 	public Forme creerForme(String chaineForme)
 	{
@@ -13,7 +11,6 @@ public class CreateurForme {
 		int[] tabCoordonnee = Decodeur.getTableauCoordonnee();
 		Forme uneForme = null;
 		
-		logger.logID(Decodeur.getNumeroSequence());
 		
 		switch(Decodeur.getTypeForme())
 		{

@@ -71,6 +71,7 @@ public class CommBase {
 		threadComm = new SwingWorker(){
 			@Override
 			protected Object doInBackground() throws Exception {
+				System.out.println("Le fils d'execution parallele est lance");
 				try {
 					String infoConnexion = JOptionPane.showInputDialog(null,"Quel est le nom d'hôte et le port du serveur de formes?",null);
 					if(infoConnexion.contains("localhost") == true)
@@ -88,6 +89,7 @@ public class CommBase {
 					JOptionPane.showMessageDialog(null,"La connexion au serveur n'a pas pu être effectuée. Assurez-vous que le serveur est bien ouvert.", "Erreur Connexion",
 						    JOptionPane.ERROR_MESSAGE);
 					isActif = false;
+					System.out.println(e);
 				}
 				while(isActif){
 					Thread.sleep(DELAI);

@@ -52,9 +52,9 @@ public class DecodeurChaine{
 	    			correspondance = pRegex.matcher(sChaine);
 	    			if(correspondance.find())
 	    			{
-	    				tabCoord[0] = Integer.parseInt(correspondance.group(1));
-	    				tabCoord[1] = Integer.parseInt(correspondance.group(2));
-	    				tabCoord[2] = Integer.parseInt(correspondance.group(3));
+	    				System.out.println(correspondance.group(1));
+	    				System.out.println(correspondance.group(2));
+	    				System.out.println(correspondance.group(3));
 	    			}
 	    		break;
 	    		case "RECTANGLE":

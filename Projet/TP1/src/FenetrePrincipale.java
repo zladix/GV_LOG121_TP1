@@ -47,7 +47,6 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent arg0) {
 		
 		if(arg0.getPropertyName().equals("ENVOIE-TEST")){
-			System.out.print((String) arg0.getNewValue());
 			 fenetreFormes.initialiserTabForme((String) arg0.getNewValue());
 
 		}

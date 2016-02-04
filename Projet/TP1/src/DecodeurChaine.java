@@ -52,7 +52,7 @@ public class DecodeurChaine{
 	 * Décode la chaine recu dans le format NumSéquence FORME Coordonnée FORME
 	 * @param sChaine contient la chaine obtenu du serveur de forme
 	 */
-	public void DecoderChaine(String sChaine)
+	public void decoderChaine(String sChaine)
 	{
 		sChaine = sChaine.replaceAll(" ","-");
 		Pattern pRegex = Pattern.compile(REGEX_FORME);

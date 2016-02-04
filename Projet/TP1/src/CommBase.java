@@ -125,7 +125,7 @@ public class CommBase {
 	 * Envoi "GET" au serveur et récupère la réponse
 	 */
 	protected String communicationServeur()
-	{	
+	{
 		//On peu communiquer avec le serveur
 			try{
 				if(socket.isConnected() == true && socket.isClosed() == false)

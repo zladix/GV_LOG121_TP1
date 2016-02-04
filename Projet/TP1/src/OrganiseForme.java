@@ -23,7 +23,6 @@ public final class OrganiseForme {
 		private Forme tabForme[];
 		private int pos;
 
-		
 		/**
 		 * Constructeur du tableau de forme l'initialise à 10
 		 */

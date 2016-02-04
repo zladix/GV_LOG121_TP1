@@ -11,6 +11,7 @@ Historique des modifications
 2016-01-14 Version initiale
 *******************************************************/  
 import java.awt.Color;
+import ca.etsmtl.log.util.IDLogger;
 
 /**
  * Classe qui va s'occuper de créer les formes à partir d'une chaîne de caractères
@@ -27,10 +28,12 @@ public class CreateurForme {
 	public Forme creerForme(String chaineForme)
 	{
 		DecodeurChaine Decodeur = new DecodeurChaine();
-		Decodeur.DecoderChaine(chaineForme);
+		Decodeur.decoderChaine(chaineForme);
 		int[] tabCoordonnee = Decodeur.getTableauCoordonnee();
 		Forme uneForme = null;
 		
+		IDLogger logger = IDLogger.getInstance(); //Méthode statique
+		logger.logID(Decodeur.getNumeroSequence());
 		
 		switch(Decodeur.getTypeForme())
 		{

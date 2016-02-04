@@ -27,7 +27,7 @@ public class FenetreFormes extends JComponent{
 	private static final long serialVersionUID = -2262235643903749505L;
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
-	public static final Dimension dimension = new Dimension(500,500);
+	public static final Dimension DIMENSION = new Dimension(500,500);
 	public OrganiseForme org = new OrganiseForme();
 	/**
 	 * Constructeur
@@ -62,7 +62,7 @@ public class FenetreFormes extends JComponent{
 		
 		CreateurForme crea = new CreateurForme();
 		Forme maForme = crea.creerForme(sForme);
-		org.AjoutForme(maForme);
+		org.ajoutForme(maForme);
 		repaint();
 		
 	}
@@ -72,6 +72,6 @@ public class FenetreFormes extends JComponent{
 	 */
 	@Override 
 	public Dimension getPreferredSize(){
-		return dimension;
+		return DIMENSION;
 	}
 }

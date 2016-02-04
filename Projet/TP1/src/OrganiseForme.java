@@ -36,7 +36,7 @@ public final class OrganiseForme {
 		 * Va ajouter une forme dans le tableau et enlever la première forme s'il y en a plus que 10
 		 * @param uneForme Forme à ajouter dans le tableau
 		 */
-		public void AjoutForme(Forme uneForme)
+		public void ajoutForme(Forme uneForme)
 		{
 			tabForme[pos] = uneForme;
 			Forme tabFormeTemp[] = new Forme[MAX_FORME];

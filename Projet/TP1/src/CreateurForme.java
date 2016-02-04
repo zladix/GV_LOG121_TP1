@@ -27,30 +27,30 @@ public class CreateurForme {
 	 */
 	public Forme creerForme(String chaineForme)
 	{
-		DecodeurChaine Decodeur = new DecodeurChaine();
-		Decodeur.decoderChaine(chaineForme);
-		int[] tabCoordonnee = Decodeur.getTableauCoordonnee();
+		DecodeurChaine decodeur = new DecodeurChaine();
+		decodeur.decoderChaine(chaineForme);
+		int[] tabCoordonnee = decodeur.getTableauCoordonnee();
 		Forme uneForme = null;
 		
 		IDLogger logger = IDLogger.getInstance(); //Méthode statique
-		logger.logID(Decodeur.getNumeroSequence());
+		logger.logID(decodeur.getNumeroSequence());
 		
-		switch(Decodeur.getTypeForme())
+		switch(decodeur.getTypeForme())
 		{
 			case "CARRE":
-				uneForme = new Quadrilatere(Decodeur.getNumeroSequence(), Color.green, tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
+				uneForme = new Quadrilatere(decodeur.getNumeroSequence(), Color.green, tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
 			break;
 			case "RECTANGLE":
-				uneForme = new Quadrilatere(Decodeur.getNumeroSequence(), Color.yellow, tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
+				uneForme = new Quadrilatere(decodeur.getNumeroSequence(), Color.yellow, tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
 			break;
 			case "CERCLE":
-				uneForme = new Cercle(Decodeur.getNumeroSequence(), Color.red,tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2]);
+				uneForme = new Cercle(decodeur.getNumeroSequence(), Color.red,tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2]);
 			break;
 			case "OVALE":
-				uneForme = new Ovale(Decodeur.getNumeroSequence(), Color.blue,tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
+				uneForme = new Ovale(decodeur.getNumeroSequence(), Color.blue,tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
 			break;
 			case "LIGNE":
-				uneForme = new Ligne(Decodeur.getNumeroSequence(), Color.orange, tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
+				uneForme = new Ligne(decodeur.getNumeroSequence(), Color.orange, tabCoordonnee[0], tabCoordonnee[1], tabCoordonnee[2], tabCoordonnee[3]);
 			break;		
 		}
 		

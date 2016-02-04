@@ -17,9 +17,9 @@ import java.util.regex.*;
  * Classe permettant de décoder des chaines et de renvoyer les informations l'aide d'expression régulière
  */
 public class DecodeurChaine{
-	private final String REGEX_FORME ="([^-]*?)-[^<]*?<([^>]*?)>";
-	private final String REGEX_COORD_QUATRE ="[^<]*?<[^-]*?-([^-]*?)-([^-]*?)-([^-]*?)-([^-]*?)-";
-	private final String REGEX_COORD_TROIS = "[^<]*?<[^-]*?-([^-]*?)-([^-]*?)-([^-]*?)-";
+	private final String FORME ="([^-]*?)-[^<]*?<([^>]*?)>";
+	private final String COORD_QUATRE ="[^<]*?<[^-]*?-([^-]*?)-([^-]*?)-([^-]*?)-([^-]*?)-";
+	private final String COORD_TROIS = "[^<]*?<[^-]*?-([^-]*?)-([^-]*?)-([^-]*?)-";
 	private final int TAILLE_TAB_MAX = 4;
 	
 	private int numeroSequence;
@@ -55,7 +55,7 @@ public class DecodeurChaine{
 	public void decoderChaine(String sChaine)
 	{
 		sChaine = sChaine.replaceAll(" ","-");
-		Pattern pRegex = Pattern.compile(REGEX_FORME);
+		Pattern pRegex = Pattern.compile(FORME);
 		Matcher correspondance = pRegex.matcher(sChaine);
 	    if (pRegex.matcher(sChaine).find())
 	    {
@@ -65,7 +65,7 @@ public class DecodeurChaine{
 	    	switch(typeForme)
 	    	{
 	    		case "CERCLE":
-	    			pRegex = Pattern.compile(REGEX_COORD_TROIS);
+	    			pRegex = Pattern.compile(COORD_TROIS);
 	    			correspondance = pRegex.matcher(sChaine);
 	    			if(correspondance.find())
 	    			{
@@ -78,7 +78,7 @@ public class DecodeurChaine{
 	    		case "LIGNE":
 	    		case "CARRE":
 	    		case "OVALE":
-	    			pRegex = Pattern.compile(REGEX_COORD_QUATRE);
+	    			pRegex = Pattern.compile(COORD_QUATRE);
 	    			correspondance = pRegex.matcher(sChaine);
 	    			if(correspondance.find())
 	    			{

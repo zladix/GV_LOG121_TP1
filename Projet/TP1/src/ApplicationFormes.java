@@ -15,7 +15,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * Cette classe reprÃ©sente l'application dans son ensemble. 
+ * Cette classe représente l'application dans son ensemble. 
  * @author Patrice Boucher
  */
 public class ApplicationFormes{

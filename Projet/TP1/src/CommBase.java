@@ -75,17 +75,24 @@ public class CommBase {
 				System.out.println("Le fils d'execution parallele est lance");
 				try {
 					String infoConnexion = JOptionPane.showInputDialog(null,"Quel est le nom d'hôtes et le port du serveur de formes?",null);
-					if(infoConnexion.contains("localhost") == true)
+					if(infoConnexion != null)
 					{
-						socket = new Socket(InetAddress.getLocalHost(),Integer.parseInt(infoConnexion.substring(infoConnexion.indexOf(":")+1,infoConnexion.length())));
+						if(infoConnexion.contains("localhost") == true)
+						{
+							socket = new Socket(InetAddress.getLocalHost(),Integer.parseInt(infoConnexion.substring(infoConnexion.indexOf(":")+1,infoConnexion.length())));
+						}
+						else
+						{
+							socket = new Socket(infoConnexion.substring(0,infoConnexion.indexOf(":")),Integer.parseInt(infoConnexion.substring(infoConnexion.indexOf(":")+1,infoConnexion.length())));
+						}
+						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+						out = new PrintWriter(socket.getOutputStream());
+						isActif = socket.isConnected();
 					}
 					else
 					{
-						socket = new Socket(infoConnexion.substring(0,infoConnexion.indexOf(":")),Integer.parseInt(infoConnexion.substring(infoConnexion.indexOf(":")+1,infoConnexion.length())));
+						return null;
 					}
-					in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-					out = new PrintWriter(socket.getOutputStream());
-					isActif = socket.isConnected();
 				}catch (Exception e) {
 					JOptionPane.showMessageDialog(null,"La connexion au serveur n'a pas pu être effectué Assurez-vous que le serveur est bien ouvert.", "Erreur Connexion",
 						    JOptionPane.ERROR_MESSAGE);

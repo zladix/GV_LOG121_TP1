@@ -43,16 +43,16 @@ public abstract class Forme {
 	 * va dessiner le bon type de forme
 	 * @param g objet graphics dans la méthode paint component ou on veut dessiner
 	 */
-	public void dessiner(Graphics g){}
+	protected void dessiner(Graphics g){}
 	
 	/**
 	 * Calcule l'aire selon la forme et retourne sa valeur
 	 */
-	public double getAire(){return 0;}
+	protected double getAire(){return 0;}
 	
 	/**
 	 * Calcule la distance entre les deux points les plus loin et renvoie la valeur.
 	 */
-	public double getDistance(){return 0;}
+	protected double getDistance(){return 0;}
 
 }

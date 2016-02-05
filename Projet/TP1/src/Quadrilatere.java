@@ -54,4 +54,19 @@ public class Quadrilatere extends Forme {
 
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see Forme#getAire()
+	 */
+	public double getAire()
+	{
+		//Longueur*Largeur
+		return (Math.abs(x2-x1)*Math.abs(y2-y1));
+	}
+	
+	public double getDistance()
+	{
+		//Formule de distance
+		return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+	}
 }

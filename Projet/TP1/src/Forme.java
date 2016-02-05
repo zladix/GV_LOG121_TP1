@@ -45,6 +45,14 @@ public abstract class Forme {
 	 */
 	public void dessiner(Graphics g){}
 	
+	/**
+	 * Calcule l'aire selon la forme et retourne sa valeur
+	 */
+	public double getAire(){return 0;}
 	
+	/**
+	 * Calcule la distance entre les deux points les plus loin et renvoie la valeur.
+	 */
+	public double getDistance(){return 0;}
 
 }

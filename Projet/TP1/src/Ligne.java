@@ -50,4 +50,20 @@ public class Ligne extends Forme {
 		g.drawLine(x1, y1, x2, y2);
 
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see Forme#getAire()
+	 */
+	public double getAire()
+	{
+		//Longueur*Largeur
+		return (Math.abs(x2-x1));
+	}
+	
+	public double getDistance()
+	{
+		//Formule de distance
+		return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+	}
 }

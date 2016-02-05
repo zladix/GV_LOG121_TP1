@@ -92,7 +92,9 @@ public class CommBase {
 					isActif = false;
 					System.out.println(e);
 				}
-				while(isActif){
+				//Ouverture de la connexion pour récupéré 10 formes
+				for(int i = 0 ; i < 20 ; i++)
+				{
 					Thread.sleep(DELAI);
 					String sForme = communicationServeur();
 					if(sForme.equals("commande> ") == false)
@@ -104,7 +106,8 @@ public class CommBase {
 						   firePropertyChange("ENVOIE-TEST", null, (String) sForme); 
 					}
 				}
-				
+				//Fermeture de la connexion
+				stop();
 				return null;
 			}
 		};

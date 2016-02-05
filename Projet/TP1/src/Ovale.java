@@ -50,5 +50,29 @@ public class Ovale extends Forme{
 		g.setColor(couleur);
 		g.fillOval(centreX, centreY, rayonH, rayonV);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see Forme#getAire()
+	 */
+	public double getAire()
+	{
+		//RayonH * RayonV * PI
+		return (Math.PI*(rayonH*rayonV));
+	}
+	
+	public double getDistance()
+	{
+		//Rayon le plus grand *2
+		if(rayonH >= rayonV)
+		{
+			return Math.pow(rayonH, 2);
+		}
+		else
+		{
+			return Math.pow(rayonV, 2);
+		}
+		
+	}
 
 }

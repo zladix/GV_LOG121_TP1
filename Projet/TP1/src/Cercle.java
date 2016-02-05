@@ -49,4 +49,20 @@ public class Cercle extends Forme{
 		g.setColor(couleur);
 		g.fillOval(centreX, centreY, rayon, rayon);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see Forme#getAire()
+	 */
+	public double getAire()
+	{
+		//Pi * rayon à la 2
+		return (Math.PI*Math.pow(rayon, 2));
+	}
+	
+	public double getDistance()
+	{
+		//Diamètre
+		return Math.pow(rayon, 2);
+	}
 }

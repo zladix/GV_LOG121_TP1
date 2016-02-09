@@ -11,6 +11,7 @@ Historique des modifications
 2016-01-14 Version initiale
 *******************************************************/  
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Arrays;
 
 /**
@@ -19,56 +20,87 @@ import java.util.Arrays;
  */
 public final class OrganiseForme {
 		
+		private class Noeud
+		{
+			private Forme maForme;
+			private Noeud noeudSuivant;
+			
+			public Noeud(Forme maForme, Noeud noeudSuivant)
+			{
+				this.maForme = maForme;
+				this.noeudSuivant = noeudSuivant;
+				
+			}
+			
+			public Noeud getNoeudSuivant()
+			{
+				return noeudSuivant;
+			}
+		}
+		
+		Noeud NoeudPremier;
+		
 		final int MAX_FORME = 10;
 		private Forme tabForme[];
 		private int pos;
-
+		
+		
 		/**
-		 * Constructeur du tableau de forme l'initialise à 10
+		 * Constructeur de la liste chaînée de forme et l'initialise à 10
 		 */
 		public OrganiseForme()
 		{
+			Noeud NoeudPremier = null;
 			pos = 0;
 			tabForme = new Forme[MAX_FORME];
 		}
 		
 		/**
-		 * Va ajouter une forme dans le tableau et enlever la première forme s'il y en a plus que 10
-		 * @param uneForme Forme à ajouter dans le tableau
+		 * Ajout de la forme dans la liste chaînée
+		 * @param uneForme Forme à ajouter
 		 */
 		public void ajoutForme(Forme uneForme)
 		{
-			tabForme[pos] = uneForme;
-			Forme tabFormeTemp[] = new Forme[MAX_FORME];
-			
-			tabFormeTemp = tabForme;
-			
-			if(pos == MAX_FORME-1)
+			if(NoeudPremier == null)
 			{
-				for(int i=0;i<MAX_FORME-1;i++)
-				{
-					tabForme[i] = tabFormeTemp[i+1];
-				}
-				tabForme[MAX_FORME-1] = null;
+				NoeudPremier = new Noeud(uneForme, NoeudPremier);
 			}
 			else
 			{
-				pos = pos+1;
+				Noeud noeudCourant = NoeudPremier;
+				
+				while(noeudCourant.noeudSuivant!= null)
+				{
+					noeudCourant = noeudCourant.getNoeudSuivant();
+					
+				}
+				
+				noeudCourant.noeudSuivant = new Noeud(uneForme,noeudCourant);
+				noeudCourant = noeudCourant.noeudSuivant;
+				noeudCourant.noeudSuivant = null;
 			}
+			
 		}
-		/**
-		 * @return le tableau de forme
-		 */
-		public Forme[] getTabForme()
+		
+		public void afficherFormes(Graphics g)
 		{
-			return this.tabForme;
-		}
-		/**
-		 * @return la position du tableau de la forme
-		 */
-		public int getPos()
-		{
-			return this.pos;
+			int numForme = 0;
+			if(NoeudPremier == null)
+			{
+				//message d'erreur
+			}
+			else
+			{
+				Noeud noeudCourant = NoeudPremier;
+				
+				while(noeudCourant!=null)
+				{
+					numForme = numForme+1;
+					noeudCourant.maForme.dessiner(g,numForme);
+					noeudCourant = noeudCourant.getNoeudSuivant();
+					
+				}
+			}
 		}
 		
 }

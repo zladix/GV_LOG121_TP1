@@ -42,16 +42,8 @@ public class FenetreFormes extends JComponent{
 	@Override 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		Forme[] tabForme = org.getTabForme();
 		
-		if(tabForme[0] != null)
-		{
-			// Testing...
-			for(int i = 0;i<org.getPos();i++)
-			{
-				tabForme[i].dessiner(g);
-			}
-		}
+		org.afficherFormes(g);
 	}
 	
 	/**

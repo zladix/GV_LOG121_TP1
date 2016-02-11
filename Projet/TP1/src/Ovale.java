@@ -45,13 +45,10 @@ public class Ovale extends Forme{
 	/* (non-Javadoc)
 	 * @see Forme#dessiner(java.awt.Graphics)
 	 */
-	public void dessiner(Graphics g,int numForme)
+	public void dessiner(Graphics g)
 	{
 		g.setColor(couleur);
-		g.fillOval(numForme*40, numForme*40, rayonH*2, rayonV*2);
-		g.setColor(Color.black);
-		g.drawOval(numForme*40, numForme*40, rayonH*2, rayonV*2);
-		g.drawRect(numForme*40, numForme*40, rayonH*2, rayonV*2);
+		g.fillOval(centreX, centreY, rayonH, rayonV);
 	}
 	
 	/*

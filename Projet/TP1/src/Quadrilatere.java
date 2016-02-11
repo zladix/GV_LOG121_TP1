@@ -47,12 +47,10 @@ public class Quadrilatere extends Forme {
 	/* (non-Javadoc)
 	 * @see Forme#dessiner(java.awt.Graphics)
 	 */
-	public void dessiner(Graphics g,int numForme)
+	public void dessiner(Graphics g)
 	{
 		g.setColor(couleur);
-		g.fillRect(numForme*40, numForme*40, x2-x1,y2-y1);
-		g.setColor(Color.black);
-		g.drawRect(numForme*40, numForme*40, x2-x1,y2-y1);
+		g.fillRect(x1, y1, x2-x1,y2-y1);
 
 	}
 	

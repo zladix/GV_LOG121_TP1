@@ -43,7 +43,7 @@ public abstract class Forme {
 	 * va dessiner le bon type de forme
 	 * @param g objet graphics dans la méthode paint component ou on veut dessiner
 	 */
-	protected void dessiner(Graphics g,int numForme){}
+	protected void dessiner(Graphics g){}
 	
 	/**
 	 * Calcule l'aire selon la forme et retourne sa valeur

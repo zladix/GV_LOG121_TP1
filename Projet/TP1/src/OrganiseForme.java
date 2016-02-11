@@ -13,12 +13,17 @@ Historique des modifications
 2016-01-14 Version initiale
 *******************************************************/  
 
+import java.awt.Color;
+import java.util.Arrays;
+
+
 /**
  * classe qui va gérer le tableau de forme
  *
  */
 public final class OrganiseForme {
 		
+
 		private class Noeud
 		{
 			private Forme maForme;
@@ -37,12 +42,11 @@ public final class OrganiseForme {
 		}
 		
 		Noeud NoeudPremier;
-		final int MAX_FORME = 10;
 		private static OrganiseForme org = new OrganiseForme();
 
 		
 		/**
-		 * Constructeur de la liste chaînée de forme et l'initialise à 10
+		 * Constructeur du tableau de forme l'initialise à 10
 		 */
 		private OrganiseForme()
 		{
@@ -52,53 +56,43 @@ public final class OrganiseForme {
 		public static OrganiseForme getOrganise()
 		{
 			return org;
+			pos = 0;
 		}
 		
 		/**
-		 * Ajout de la forme dans la liste chaînée
-		 * @param uneForme Forme à ajouter
+		 * Va ajouter une forme dans le tableau et enlever la première forme s'il y en a plus que 10
+		 * @param uneForme Forme à ajouter dans le tableau
 		 */
 		public void ajoutForme(Forme uneForme)
 		{
-			if(NoeudPremier == null)
+			if(pos == MAX_FORME-1)
 			{
-				NoeudPremier = new Noeud(uneForme, NoeudPremier);
-			}
-			else
-			{
-				Noeud noeudCourant = NoeudPremier;
-				
-				while(noeudCourant.noeudSuivant!= null)
+				for(int i=0;i<MAX_FORME-1;i++)
 				{
 					noeudCourant = noeudCourant.getNoeudSuivant();			
+					tabForme[i] = tabFormeTemp[i+1];
+
 				}
-				
-				noeudCourant.noeudSuivant = new Noeud(uneForme,noeudCourant);
-				noeudCourant = noeudCourant.noeudSuivant;
-				noeudCourant.noeudSuivant = null;
-			}
-			
-		}
-		
-		public void afficherFormes(Graphics g)
-		{
-			int numForme = 0;
-			if(NoeudPremier == null)
-			{
-				//message d'erreur
+				tabForme[MAX_FORME-1] = null;
 			}
 			else
 			{
-				Noeud noeudCourant = NoeudPremier;
-				
-				while(noeudCourant!=null)
-				{
-					numForme = numForme+1;
-					noeudCourant.maForme.dessiner(g,numForme);
-					noeudCourant = noeudCourant.getNoeudSuivant();
-					
-				}
+				pos = pos+1;
 			}
+		}
+		/**
+		 * @return le tableau de forme
+		 */
+		public Forme[] getTabForme()
+		{
+			return this.tabForme;
+		}
+		/**
+		 * @return la position du tableau de la forme
+		 */
+		public int getPos()
+		{
+			return this.pos;
 		}
 		
 }

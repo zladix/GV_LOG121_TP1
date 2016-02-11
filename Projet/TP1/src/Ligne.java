@@ -44,11 +44,10 @@ public class Ligne extends Forme {
 		
 	}
 	
-	public void dessiner(Graphics g,int numForme)
+	public void dessiner(Graphics g)
 	{
 		g.setColor(couleur);
-		g.drawRect(numForme*40,numForme*40,x2-x1,y2-y1);
-		g.drawLine(numForme*40, numForme*40, x2, y2);
+		g.drawLine(x1, y1, x2, y2);
 
 	}
 	

@@ -13,17 +13,12 @@ Historique des modifications
 2016-01-14 Version initiale
 *******************************************************/  
 
-import java.awt.Color;
-import java.util.Arrays;
-
-
 /**
  * classe qui va gérer le tableau de forme
  *
  */
 public final class OrganiseForme {
 		
-
 		private class Noeud
 		{
 			private Forme maForme;
@@ -42,11 +37,12 @@ public final class OrganiseForme {
 		}
 		
 		Noeud NoeudPremier;
+		final int MAX_FORME = 10;
 		private static OrganiseForme org = new OrganiseForme();
 
 		
 		/**
-		 * Constructeur du tableau de forme l'initialise à 10
+		 * Constructeur de la liste chaînée de forme et l'initialise à 10
 		 */
 		private OrganiseForme()
 		{
@@ -56,43 +52,53 @@ public final class OrganiseForme {
 		public static OrganiseForme getOrganise()
 		{
 			return org;
-			pos = 0;
 		}
 		
 		/**
-		 * Va ajouter une forme dans le tableau et enlever la première forme s'il y en a plus que 10
-		 * @param uneForme Forme à ajouter dans le tableau
+		 * Ajout de la forme dans la liste chaînée
+		 * @param uneForme Forme à ajouter
 		 */
 		public void ajoutForme(Forme uneForme)
 		{
-			if(pos == MAX_FORME-1)
+			if(NoeudPremier == null)
 			{
-				for(int i=0;i<MAX_FORME-1;i++)
-				{
-					noeudCourant = noeudCourant.getNoeudSuivant();			
-					tabForme[i] = tabFormeTemp[i+1];
-
-				}
-				tabForme[MAX_FORME-1] = null;
+				NoeudPremier = new Noeud(uneForme, NoeudPremier);
 			}
 			else
 			{
-				pos = pos+1;
+				Noeud noeudCourant = NoeudPremier;
+				
+				while(noeudCourant.noeudSuivant!= null)
+				{
+					noeudCourant = noeudCourant.getNoeudSuivant();			
+				}
+				
+				noeudCourant.noeudSuivant = new Noeud(uneForme,noeudCourant);
+				noeudCourant = noeudCourant.noeudSuivant;
+				noeudCourant.noeudSuivant = null;
 			}
+			
 		}
-		/**
-		 * @return le tableau de forme
-		 */
-		public Forme[] getTabForme()
+		
+		public void afficherFormes(Graphics g)
 		{
-			return this.tabForme;
-		}
-		/**
-		 * @return la position du tableau de la forme
-		 */
-		public int getPos()
-		{
-			return this.pos;
+			int numForme = 0;
+			if(NoeudPremier == null)
+			{
+				//message d'erreur
+			}
+			else
+			{
+				Noeud noeudCourant = NoeudPremier;
+				
+				while(noeudCourant!=null)
+				{
+					numForme = numForme+1;
+					noeudCourant.maForme.dessiner(g,numForme);
+					noeudCourant = noeudCourant.getNoeudSuivant();
+					
+				}
+			}
 		}
 		
 }

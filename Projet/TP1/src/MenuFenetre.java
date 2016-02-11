@@ -11,7 +11,17 @@ Historique des modifications
 2013-05-03 Version initiale
 *******************************************************/  
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+import java.net.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
@@ -49,8 +59,11 @@ public class MenuFenetre extends JMenuBar{
 			MENU_AIDE_PROPOS = "app.frame.menus.help.about";
 	private static final String MESSAGE_DIALOGUE_A_PROPOS = "app.frame.dialog.about";  
 
+
 	private JMenuItem obtenirFormeMenuItem;
 	private static final int DELAI_QUITTER_MSEC = 200;
+	public OrganiseForme org = OrganiseForme.getOrganise();
+	private PropertyChangeListener listener = null;
  	   
 	CommBase comm; // Pour activer/désactiver la communication avec le serveur
 	
@@ -59,7 +72,6 @@ public class MenuFenetre extends JMenuBar{
 	 */
 	public MenuFenetre(CommBase comm) {
 		this.comm = comm;
-		//addMenuDessiner();
 		addMenuFichier();
 		addMenuOrdre();
 		addMenuAide();
@@ -67,6 +79,8 @@ public class MenuFenetre extends JMenuBar{
 	/** 
 	 * Créer le menu "File". 
 	 */
+	
+	
 	protected void addMenuFichier() {
 		JMenu menu = creerMenu(MENU_FICHIER_TITRE, new String[] { MENU_FICHIER_OBTENIRFORME,MENU_FICHIER_QUITTER });
 		obtenirFormeMenuItem = menu.getItem(0);
@@ -94,6 +108,7 @@ public class MenuFenetre extends JMenuBar{
 						MENU_FICHIER_QUITTER_TOUCHE_MASK));
 		add(menu);
 	}
+
 	
 	/**
 	 * Cr�er le menu ordre
@@ -105,6 +120,9 @@ public class MenuFenetre extends JMenuBar{
 		JRadioButtonMenuItem rOrdreSeqCroissant = new JRadioButtonMenuItem(LangueConfig.getResource(MENU_ORDRE_NBSEQ_CROISSANT));
 		rOrdreSeqCroissant.addActionListener(new ActionListener(){
 			  public void actionPerformed(ActionEvent arg0) {
+				  Forme uneForme = new Quadrilatere(22, Color.red, 50, 50, 60, 60);
+				  org.ajoutForme(uneForme);
+				  	repaint();
 				
 			  }
 		});
@@ -112,7 +130,7 @@ public class MenuFenetre extends JMenuBar{
 		JRadioButtonMenuItem rOrdreSeqDecroissant = new JRadioButtonMenuItem(LangueConfig.getResource(MENU_ORDRE_NBSEQ_DECROISSANT));
 		rOrdreSeqDecroissant.addActionListener(new ActionListener(){
 			  public void actionPerformed(ActionEvent arg0) {
-				
+				  
 			  }
 		});
 		//Aire Croissant
@@ -204,4 +222,10 @@ public class MenuFenetre extends JMenuBar{
         }
         return menu;
    }
+	
+	public void setOrganiseForme(OrganiseForme org)
+	{
+		this.org = org;
+	}
+	
 }

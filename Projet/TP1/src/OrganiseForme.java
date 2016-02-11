@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 /******************************************************
 Cours:  LOG121
 Projet: TP1 #1
@@ -10,9 +12,6 @@ Historique des modifications
 *@author Gabriel Déry(DERG30049401)
 2016-01-14 Version initiale
 *******************************************************/  
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.Arrays;
 
 /**
  * classe qui va gérer le tableau de forme
@@ -29,7 +28,6 @@ public final class OrganiseForme {
 			{
 				this.maForme = maForme;
 				this.noeudSuivant = noeudSuivant;
-				
 			}
 			
 			public Noeud getNoeudSuivant()
@@ -39,20 +37,21 @@ public final class OrganiseForme {
 		}
 		
 		Noeud NoeudPremier;
-		
 		final int MAX_FORME = 10;
-		private Forme tabForme[];
-		private int pos;
-		
+		private static OrganiseForme org = new OrganiseForme();
+
 		
 		/**
 		 * Constructeur de la liste chaînée de forme et l'initialise à 10
 		 */
-		public OrganiseForme()
+		private OrganiseForme()
 		{
-			Noeud NoeudPremier = null;
-			pos = 0;
-			tabForme = new Forme[MAX_FORME];
+		   NoeudPremier = null;
+		}
+		
+		public static OrganiseForme getOrganise()
+		{
+			return org;
 		}
 		
 		/**
@@ -71,8 +70,7 @@ public final class OrganiseForme {
 				
 				while(noeudCourant.noeudSuivant!= null)
 				{
-					noeudCourant = noeudCourant.getNoeudSuivant();
-					
+					noeudCourant = noeudCourant.getNoeudSuivant();			
 				}
 				
 				noeudCourant.noeudSuivant = new Noeud(uneForme,noeudCourant);

@@ -14,6 +14,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Observable;
 
 import javax.swing.JComponent;
 
@@ -28,7 +31,7 @@ public class FenetreFormes extends JComponent{
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
 	public static final Dimension DIMENSION = new Dimension(500,500);
-	public OrganiseForme org = new OrganiseForme();
+	public OrganiseForme org = OrganiseForme.getOrganise();
 	/**
 	 * Constructeur
 	 */
@@ -42,22 +45,11 @@ public class FenetreFormes extends JComponent{
 	@Override 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
+		System.out.println("test");
 		org.afficherFormes(g);
 	}
 	
-	/**
-	 * Permet d'ajouter les formes dans un tableau qui sont envoyé par l'observateur
-	 * @param sForme chaîne de caractère reçu par le serveur
-	 */
-	public void initialiserTabForme(String sForme){
-		
-		CreateurForme crea = new CreateurForme();
-		Forme maForme = crea.creerForme(sForme);
-		org.ajoutForme(maForme);
-		repaint();
-		
-	}
+	
 	/*
 	 * Le Layout qui utilise (contient) FenetreFormes doit rÃ©server 
 	 * l'espace nÃ©cessaire Ã  son affichage
@@ -66,4 +58,6 @@ public class FenetreFormes extends JComponent{
 	public Dimension getPreferredSize(){
 		return DIMENSION;
 	}
+
+
 }

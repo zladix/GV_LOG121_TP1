@@ -72,6 +72,8 @@ public class CommBase {
 		threadComm = new SwingWorker(){
 			@Override
 			protected Object doInBackground() throws Exception {
+				OrganiseForme org = OrganiseForme.getOrganise();
+				
 				System.out.println("Le fils d'execution parallele est lance");
 				try {
 					String infoConnexion = JOptionPane.showInputDialog(null,"Quel est le nom d'hôtes et le port du serveur de formes?",null);
@@ -98,28 +100,30 @@ public class CommBase {
 						    JOptionPane.ERROR_MESSAGE);
 					isActif = false;
 					System.out.println(e);
+					return null;
 				}
 				//Ouverture de la connexion pour récupéré 10 formes
 				for(int i = 0 ; i < 20 ; i++)
 				{
 					Thread.sleep(DELAI);
 					String sForme = communicationServeur();
+					
 					if(sForme.equals("commande> ") == false)
 					{
-					
-					
-	 					//La méthode suivante alerte l'observateur 
-						if(listener!=null)
-						   firePropertyChange("ENVOIE-TEST", null, (String) sForme); 
+						CreateurForme crea = new CreateurForme();
+						Forme maForme = crea.creerForme(sForme);
+						org.ajoutForme(maForme);
 					}
 				}
+				JOptionPane.showMessageDialog(null,"Les formes ont été obtenues", "Formes obtenues",
+					    JOptionPane.INFORMATION_MESSAGE);
 				//Fermeture de la connexion
 				stop();
 				return null;
 			}
 		};
 		if(listener!=null)
-		   threadComm.addPropertyChangeListener(listener); // La méthode "propertyChange" de ApplicationFormes sera donc appelée lorsque le SwinkWorker invoquera la méthode "firePropertyChanger" 		
+		threadComm.addPropertyChangeListener(listener); // La méthode "propertyChange" de ApplicationFormes sera donc appelée lorsque le SwinkWorker invoquera la méthode "firePropertyChanger" 		
 		threadComm.execute(); // Lance le fil d'exécution parallèle.
 		isActif = true;
 	}

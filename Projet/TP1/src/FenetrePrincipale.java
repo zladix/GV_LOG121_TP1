@@ -39,19 +39,17 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener{
 		this.pack(); // Ajuste la dimension de la fenêtre principale selon celle de ses composants
 		this.setVisible(true); // Rend la fenêtre principale visible.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //... à réviser selon le comportement que vous désirez ...
-		
 	}
-	
+
 	// Appelé lorsque le sujet lance "firePropertyChanger"
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		
 		if(arg0.getPropertyName().equals("ENVOIE-TEST")){
-			 fenetreFormes.initialiserTabForme((String) arg0.getNewValue());
+			
 
 		}
-		
-		
-		
+
 	}
+	
 }
